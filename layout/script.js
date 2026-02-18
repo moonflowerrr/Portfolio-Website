@@ -2,7 +2,7 @@ document.addEventListener('mousemove', (e) => {
     const img = document.createElement('img');
     
     // 1. RELATIVE PATH (Adjust this to your folder structure)
-    img.src = '/layout/star.png'; 
+    img.src = './star.png'; 
     img.alt = ''; // Hides the broken image "outline" in some browsers
     img.className = 'cursor-image';
     
