@@ -70,5 +70,23 @@ p {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    border-radius: 50%;
+    gap: 50px;
+}
+
+.menu {
+    border-radius: 100%;
+    background-color: deeppink;
+    height: 80px;
+    width: 80px;
+    border-color: transparent;
+    color: pink;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    box-shadow: 0px 0px 10px 3px #ffc5d3;
+}
+
+.menu:hover {
+    background-color: hotpink;
+    box-shadow: 0px 0px 15px 5px #ff69b4;
+    cursor: pointer;
 }
