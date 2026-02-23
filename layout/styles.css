@@ -19,7 +19,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;   
-    font-size: x-large;
+    font-size: 40px;
 }
 
 .cursor-image {
@@ -89,4 +89,11 @@ p {
     background-color: hotpink;
     box-shadow: 0px 0px 15px 5px #ff69b4;
     cursor: pointer;
+}
+
+#movingStar {
+  position: fixed; /* or absolute, depending on desired effect */
+  top: 50px;
+  left: 0;
+  transition: transform 0.1s ease-out; /* Smooth the movement */
 }
