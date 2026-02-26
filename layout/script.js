@@ -1,3 +1,40 @@
+let currentRotation = 0;
+
+// function rotateTo(index) {
+//   const carousel = document.getElementById('solar-carousel');
+//   const planets = document.querySelectorAll('.planet');
+  
+//   // Calculate the angle (3 planets = 120 degrees apart)
+//   // We rotate the carousel negatively to bring the planet to the front (0deg)
+//   currentRotation = index * -120;
+  
+//   carousel.style.transform = `rotateY(${currentRotation}deg)`;
+  
+//   // Update "active" class for scaling
+//   planets.forEach((p, i) => {
+//     if(i === index) {
+//       p.style.transform = `rotateY(${i * 120}deg) translateZ(350px) scale(1.3)`;
+//       p.style.boxShadow = "0 0 50px rgba(255,255,255,0.4)";
+//     } else {
+//       p.style.transform = `rotateY(${i * 120}deg) translateZ(300px) scale(1)`;
+//       p.style.boxShadow = "none";
+//     }
+//   });
+// }
+
+function rotateTo(index) {
+  const carousel = document.getElementById('solar-carousel');
+  const angle = index * -120; // 360 / 3 planets
+  
+  // This updates only the Y-axis part of the transform defined in CSS
+  carousel.style.setProperty('--current-rotation', `${angle}deg`);
+  
+  // Keep your existing active class logic...
+  document.querySelectorAll('.planet').forEach((p, i) => {
+    p.classList.toggle('active', i === index);
+  });
+}
+
 document.addEventListener('mousemove', (e) => {
     const img = document.createElement('img');
     
@@ -20,13 +57,48 @@ document.addEventListener('mousemove', (e) => {
     }, 500); 
 });
 
-const movingImage = document.getElementById('movingImage');
-
 document.addEventListener('scroll', () => {
+  const movingImage = document.getElementById('movingImage');
+  if (!movingImage) return; // Safety: don't throw if element is missing
+
   // Get the current vertical scroll position
   const scrollPosition = window.scrollY;
 
   // Update the image's position based on scroll
-  // Example: Move the image horizontally as you scroll vertically
-  movingImage.style.transform = `translateX(${scrollPosition * 2.5}px)`; // Adjust multiplier for speed
+  // Move the image diagonally (left and slightly down) as the user scrolls
+  const speedX = 1.5; // horizontal pixels per vertical pixel scrolled
+  const speedY = 0.2; // vertical pixels per vertical pixel scrolled (small angle)
+  movingImage.style.transform = `translateX(${ -scrollPosition * speedX }px) translateY(${ scrollPosition * speedY }px)`; // tweak speeds to taste
+});
+
+// Star Wars style crawl: move the `.crawl-content` as the user scrolls
+document.addEventListener('scroll', () => {
+  const crawl = document.getElementById('starwarsCrawl');
+  if (!crawl) return;
+
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const progress = Math.min(scrollTop / (docHeight || 1), 1);
+
+  // distance the crawl should travel upward (px)
+  const maxTranslate = 1000; // increased so crawl has more room to travel on taller container
+
+  // Translate upward based on progress
+  const translateY = -progress * maxTranslate;
+
+  // Reverse direction: decrease tilt and shrink as user scrolls down
+  const baseRotate = 35;
+  const rotateX = Math.max(baseRotate - progress * 12, 0);
+
+  // Start larger and shrink as the user scrolls (reverse of previous behavior)
+  const initialScale = 1.25; // starting scale (larger)
+  const minScale = 0.5; // how small it becomes at the end
+  const scale = Math.max(initialScale - progress * (initialScale - minScale), minScale);
+
+  // Fade slightly as it goes away
+  const opacity = Math.max(1 - progress * 1.1, 0);
+
+  // keep horizontal centering (translateX(-50%)) while moving vertically, rotating and scaling
+  crawl.style.transform = `translateX(-50%) translateY(${translateY}px) rotateX(${rotateX}deg) scale(${scale})`;
+  crawl.style.opacity = opacity;
 });
