@@ -88,61 +88,7 @@ p {
     gap: 50px;
 }
 
-/* Moving star used for scroll animation */
-.moving-image {
-    position: fixed;
-    top: 20vh;
-    /* start off-screen to the right */
-    left: 100vw;
-    width: 240px; /* bigger */
-    height: auto;
-    pointer-events: none;
-    will-change: transform;
-    transition: transform 0.12s linear;
-    z-index: 9999;
-    transform: translateX(0);
-}
 
-/* Star Wars style crawl styles */
-.crawl {
-    perspective: 700px;
-    /* make the crawl container taller so the page can scroll */
-    height: 500vh;
-    overflow: hidden;
-    position: relative;
-}
-
-.crawl-content {
-    position: absolute;
-    bottom: 10vh; /* revert: start slightly below viewport so it scales/recurses nicely on large screens */
-    left: 50%;
-    transform-origin: 50% 100%;
-    width: 60%;
-    max-width: 1000px;
-    color: aquamarine;
-    text-align: justify;
-    font-size: 52px; /* larger for readability */
-    line-height: 1.8;
-    transform: translateX(-50%) rotateX(25deg);
-    will-change: transform, opacity;
-    opacity: 1;
-    z-index: 50; /* ensure crawl is above background */
-}
-
-/* Responsive: reduce crawl text size on narrow screens */
-@media (max-width: 1000px) {
-    .crawl-content {
-        font-size: 40px;
-        width: 85%;
-        bottom: 5vh; /* smaller offset on small screens */
-    }
-}
-
-/* Make paragraphs slightly spaced like the crawl */
-.crawl-content p {
-    margin: 1.2rem 0;
-    color: aquamarine;
-}
 
 /* Scrollbar: make track transparent and give a very subtle thumb */
 /* WebKit browsers (Chrome, Edge, Safari) */
@@ -258,46 +204,21 @@ html {
     display: flex;
     flex-direction: column;
     border-radius: 2rem;
-    padding: 70px;
-    height: 60vh;
+    padding: 3rem; /* Adjusted from 70px */
+    min-height: 40vh; /* Changed from height: 60vh */
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 1.25rem;
-  max-width: 62.5rem;
-  width: 100%;
+  /* Increased min-width from 17rem to 22rem */
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); 
+  gap: 2rem; /* Increased gap for a cleaner look */
+  max-width: 1200px; /* Increased max-width to allow more horizontal growth */
+  width: 90%;
+  margin: 0 auto; /* Centers the container */
+  padding-top: 5%;
 }
 
-/* Liquid glass effect class 
-.glass {
-    position: relative;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(2px) saturate(200%);
-    border: 0.0625rem solid rgba(255, 255, 255, 0.8);
-    border-radius: 2rem;
-    padding: 1.25rem;
-    box-shadow: 0 8px 32px rgba(54, 66, 236, 0.2), inset 0 4px 20px rgba(255, 255, 255, 0.3);
-}
-
-.glass::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2rem;
-  backdrop-filter: blur(1px);
-  box-shadow: inset -10px -8px 0px -11px rgba(255, 255, 255, 1),
-    inset 0px -9px 0px -8px rgba(255, 255, 255, 1);
-  opacity: 0.6;
-  z-index: -1;
-  filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
-  pointer-events: none;
-}*/
 
 .glass {
   position: relative;
@@ -306,6 +227,8 @@ html {
   border-radius: 3rem;
   border: 2px solid rgba(255, 255, 255, 0.4);
   
+padding: 2rem;
+
   /* Volumetric shadows */
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.15), 
@@ -467,17 +390,19 @@ html {
 }
 
 .jelly-container {
+  grid-column: 1 / -1; /* Spans the entire width of the grid */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 130%;/* Wider to allow for the jelly's horizontal movement */
-  height: 60vh; /* Or 100vh for full screen */
-  overflow: hidden;
+  padding-left: 33%; /* Adjust based on your name's size */
+  width: 100%;
+  height: 300px; /* Adjust based on your name's size */
+  overflow: visible; /* Prevents the glow effect from being clipped */
 }
 
 .jelly-svg {
   /* Increase this number to make it bigger on screen */
-  width: 80vw; 
+  width: 100%; 
   max-width: 1000px; 
   
   height: auto;
@@ -492,6 +417,7 @@ html {
   stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
+  
   
   stroke-dasharray: var(--path-length, 2000);
   stroke-dashoffset: var(--path-length, 2000);
@@ -516,149 +442,111 @@ html {
   }
 }
 
-.solar-system-stage {
-  perspective: 1000px; /* Gives depth to the 3D space */
-  height: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*background: radial-gradient(circle at center, #e2ad4b 0%, #150470 70%);*/
+
+/* Layout Container */
+.messenger-container {
+    display: flex;
+    width: 95%;
+    max-width: 1100px;
+    height: 80vh;
+    padding: 0; /* Remove default padding to let sidebar hit edges */
+    margin: 2rem auto;
 }
 
-.carousel {
-  width: 200px;
-  height: 200px;
-  position: relative;
-  z-index: 10; /* Ensures the whole orbital plane is in front */
-  transform-style: preserve-3d;
-  
-  /* Increase translateY to 120px to push the whole ring DOWN */
-  /* rotateX(25deg) tilts the top toward you more, lowering the front planet */
-  transform: translateY(120px) 
-             rotateX(25deg) 
-             rotateZ(-15deg) 
-             rotateY(var(--current-rotation, 0deg));
-             
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+/* Sidebar Styling */
+.messenger-sidebar {
+    width: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.planet {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  /* Liquid Glass Styles from your reference */
-  /*background: rgba(10, 165, 255, 0.562);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);*/
-  border-radius: 50%; /* Make them spherical */
-  
-  /* Place planets in a circle: 360 / 3 planets = 120deg each */
-  /* rotateZ(15deg) cancels out the carousel's -15deg tilt for the planet's body */
-  transform: rotateY(calc(var(--index) * 120deg)) 
-             translateZ(450px) 
-             rotateZ(15deg) 
-             rotateX(-20deg);transition: transform 0.5s, box-shadow 0.5s;
-  cursor: pointer;
-
-  /* 1. Base color (darker side)
-     2. Middle color (main planet hue)
-     3. Highlight (facing the sun) 
-  */
-  background: radial-gradient(
-    circle at 30% 30%, 
-    rgba(255, 255, 255, 0.4) 0%, 
-    rgba(134, 180, 255, 0.2) 40%, 
-    rgba(0, 0, 0, 0.5) 100%
-  );
-
-  /* Inner shadow gives it the "thick glass" rim */
-  box-shadow: inset -10px -10px 30px rgba(0, 0, 0, 0.7),
-              inset 10px 10px 30px rgba(255, 255, 255, 0.2);
-              
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px); /* Makes the sphere look solid but translucent *
-
+/* Main Area */
+.messenger-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
 }
 
-.planet::before {
-  content: '';
-  position: absolute;
-  top: 15%;
-  left: 15%;
-  width: 30%;
-  height: 20%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
-  border-radius: 50%; /* The "glint" of light */
-  filter: blur(1px);
+.messenger-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
-/* The Glossy "Jelly" look we built earlier */
-.planet::after {
-  content: '';
-  position: absolute;
-  top: 10%; left: 15%;
-  width: 40%; height: 20%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
-  border-radius: 50%;
+.search-bar {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    color: white;
 }
 
-.planet.active {
-  background: radial-gradient(
-    circle at 30% 30%, 
-    rgba(255, 255, 255, 0.6) 0%, 
-    rgba(255, 126, 179, 0.3) 50%, /* Adds a pinkish hue from your sun */
-    rgba(0, 0, 0, 0.6) 100%
-  );
-  box-shadow: 0 0 50px rgba(134, 180, 255, 0.4);
+/* Message Rows */
+.message-list {
+    margin-top: 1rem;
+    flex: 1;
+    overflow-y: auto;
 }
 
-/* Saturn Ring */
-.saturn-ring {
-  position: absolute;
-  top: 50%; left: 80%;
-  width: 1050px; height: 1050px;
-  border-radius: 50%;
-  /* The "Particle" look using a dotted border + heavy glow */
-  border: 4px dotted rgba(134, 180, 255, 0.8);
-  filter: drop-shadow(0 0 10px #86b4ff) drop-shadow(0 0 20px #ff7eb3);
-  
-  transform: translate(-50%, -50%) rotateX(90deg);
-  background: radial-gradient(circle, transparent 65%, rgba(255, 126, 179, 0.05) 70%, transparent 75%);
+.message-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+    cursor: pointer;
 }
 
-.central-star {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-  z-index: 0; /* Sits behind the front planet but in front of back ones */
-  pointer-events: none;
+.message-row:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.sun-core {
-  width: 500px;
-  height: 500px;
-  background: #fff; /* Pure white center */
-  border-radius: 50%;
-  /* Layers of pink and blue glow */
-  box-shadow: 0 0 40px #fff,
-              0 0 80px #ff007f, 
-              0 0 120px #ff7eb3;
-  filter: blur(2px);
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
 }
 
-.sun-corona {
-  position: absolute;
-  top: -20%; left: -20%;
-  width: 140%; height: 140%;
-  background: radial-gradient(circle, rgba(255, 0, 127, 0.3) 0%, transparent 70%);
-  mix-blend-mode: color-dodge; /* Makes it look like it's burning into the stars */
+.message-info {
+    flex: 1;
 }
 
-@keyframes pulse {
-  from { transform: scale(1); opacity: 0.8; }
-  to { transform: scale(1.1); opacity: 1; }
+.contact-name {
+    margin: 0;
+    color: white;
+    font-size: 1.1rem;
 }
 
+.last-message {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Footer Input */
+.messenger-footer {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px; /* pill shape like image */
+    margin-top: 1rem;
+}
+
+.chat-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.8rem;
+    outline: none;
+}

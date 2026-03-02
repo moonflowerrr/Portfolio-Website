@@ -1,39 +1,4 @@
-let currentRotation = 0;
 
-// function rotateTo(index) {
-//   const carousel = document.getElementById('solar-carousel');
-//   const planets = document.querySelectorAll('.planet');
-  
-//   // Calculate the angle (3 planets = 120 degrees apart)
-//   // We rotate the carousel negatively to bring the planet to the front (0deg)
-//   currentRotation = index * -120;
-  
-//   carousel.style.transform = `rotateY(${currentRotation}deg)`;
-  
-//   // Update "active" class for scaling
-//   planets.forEach((p, i) => {
-//     if(i === index) {
-//       p.style.transform = `rotateY(${i * 120}deg) translateZ(350px) scale(1.3)`;
-//       p.style.boxShadow = "0 0 50px rgba(255,255,255,0.4)";
-//     } else {
-//       p.style.transform = `rotateY(${i * 120}deg) translateZ(300px) scale(1)`;
-//       p.style.boxShadow = "none";
-//     }
-//   });
-// }
-
-function rotateTo(index) {
-  const carousel = document.getElementById('solar-carousel');
-  const angle = index * -120; // 360 / 3 planets
-  
-  // This updates only the Y-axis part of the transform defined in CSS
-  carousel.style.setProperty('--current-rotation', `${angle}deg`);
-  
-  // Keep your existing active class logic...
-  document.querySelectorAll('.planet').forEach((p, i) => {
-    p.classList.toggle('active', i === index);
-  });
-}
 
 document.addEventListener('mousemove', (e) => {
     const img = document.createElement('img');
