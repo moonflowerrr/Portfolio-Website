@@ -1,8 +1,23 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', monospace;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
+
+/* Background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(17, 189, 252, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
 
 h1 {
     color: beige;
@@ -50,7 +65,7 @@ p {
     background-image: linear-gradient(50deg, #1e024f, #020a1e, #6507a8);
     animation: gradient-animation 5s ease infinite;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh; /* allow page content to grow beyond the viewport */
 }
 
 /* Define the keyframes for the animation */
@@ -72,6 +87,31 @@ p {
     margin-top: 20px;
     gap: 50px;
 }
+
+
+
+/* Scrollbar: make track transparent and give a very subtle thumb */
+/* WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.06); /* tweak alpha for visibility */
+    border-radius: 8px;
+    border: 3px solid transparent; /* spacing so thumb doesn't overlap content */
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }
+html { scrollbar-width: none; }
+
 
 .menu {
     border-radius: 100%;
@@ -96,4 +136,417 @@ p {
   top: 50px;
   left: 0;
   transition: transform 0.1s ease-out; /* Smooth the movement */
+}
+
+
+.aboutMeIntro {
+    color: aquamarine;
+    width: 100vw;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    font-size: 40px;
+}
+
+.aboutMeContent {
+    color: aquamarine;
+    width: 100vw;
+    height: 250px;
+    align-items: center;   
+    font-size: 20px;
+}
+
+.aboutMeOutro {
+    color: aquamarine;
+    width: 100vw;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    font-size: 40px;
+}
+
+.animated-gradient-background-planet1 {
+    background-size: 400% 400%;
+    /* Keep the gradient on fewer lines to test parser limits */
+    background-image: linear-gradient(50deg, #160052, #0a38cf, #48ffa3);
+    animation: gradient-animation 5s ease infinite;
+    width: 100%;
+    min-height: 100vh; /* allow page content to grow beyond the viewport */
+}
+
+/* Define the keyframes for the animation */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+.introGlass {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+    padding: 3rem; /* Adjusted from 70px */
+    min-height: 40vh; /* Changed from height: 60vh */
+}
+
+.container {
+  display: grid;
+  /* Increased min-width from 17rem to 22rem */
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); 
+  gap: 2rem; /* Increased gap for a cleaner look */
+  max-width: 1200px; /* Increased max-width to allow more horizontal growth */
+  width: 90%;
+  margin: 0 auto; /* Centers the container */
+  padding-top: 5%;
+}
+
+
+.glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px) saturate(200%);
+  border-radius: 3rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  
+padding: 2rem;
+
+  /* Volumetric shadows */
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.15), 
+    inset 0 4px 15px rgba(255, 255, 255, 0.6),
+    inset 0 -4px 15px rgba(255, 255, 255, 0.2);
+    
+  overflow: hidden; /* Clips the inner highlight */
+}
+
+
+/* The Glossy Highlight Streak */
+.glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 35%;
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.5) 0%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 0 0 100% 100%;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Content style */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem;
+  margin-bottom: 0.9375rem;
+}
+
+.icon {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.icon::after {
+  border-radius: 0.625rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 1.1rem;
+  color: white;
+  margin: 0.3125rem 0 0 0;
+}
+
+.card-content {
+  color: white;
+  line-height: 1.6;
+}
+
+.card-content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.938rem;
+  margin-top: 0.938rem;
+}
+
+.card-content-icon {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 0 auto 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.btn-glass {
+  position: relative;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.9375rem;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-glass::after {
+  border-radius: 0.75rem;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Musical Widget */
+.music-widget {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem;
+  padding: 0.9375rem;
+  border-radius: 0.9375rem;
+  margin-top: 0.9375rem;
+}
+
+.music-widget::after {
+  border-radius: 0.9375rem;
+}
+
+.album-cover {
+  width: 3.125rem;
+  height: 3.125rem;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.play-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 550) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.jelly-container {
+  grid-column: 1 / -1; /* Spans the entire width of the grid */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 33%; /* Adjust based on your name's size */
+  width: 100%;
+  height: 300px; /* Adjust based on your name's size */
+  overflow: visible; /* Prevents the glow effect from being clipped */
+}
+
+.jelly-svg {
+  /* Increase this number to make it bigger on screen */
+  width: 100%; 
+  max-width: 1000px; 
+  
+  height: auto;
+  display: block;
+  margin: 0 auto; 
+  overflow: visible; /* CRITICAL: prevents the jelly glow from being cut off */
+}
+
+.jelly-path {
+  fill: none;
+  stroke: #fd96d6;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  
+  
+  stroke-dasharray: var(--path-length, 2000);
+  stroke-dashoffset: var(--path-length, 2000);
+  
+  /* Reduced time to 4s for a snappier feel */
+  animation: writeAndRewrite 3s cubic-bezier(1, 0, 1, 1) infinite alternate;
+  
+  /* Initial subtle glow */
+  filter: drop-shadow(0 0 5px rgba(70, 3, 177, 0.3));
+}
+
+@keyframes writeAndRewrite {
+  0% {
+    stroke-dashoffset: var(--path-length, 2000);
+    opacity: 0.3;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    /* Stronger "Liquid Glass" glow when finished */
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+  }
+}
+
+
+/* Layout Container */
+.messenger-container {
+    display: flex;
+    width: 95%;
+    max-width: 1100px;
+    height: 80vh;
+    padding: 0; /* Remove default padding to let sidebar hit edges */
+    margin: 2rem auto;
+}
+
+/* Sidebar Styling */
+.messenger-sidebar {
+    width: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Main Area */
+.messenger-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.messenger-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    color: white;
+}
+
+/* Message Rows */
+.message-list {
+    margin-top: 1rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.message-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.message-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.message-info {
+    flex: 1;
+}
+
+.contact-name {
+    margin: 0;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.last-message {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Footer Input */
+.messenger-footer {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px; /* pill shape like image */
+    margin-top: 1rem;
+}
+
+.chat-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.8rem;
+    outline: none;
 }
