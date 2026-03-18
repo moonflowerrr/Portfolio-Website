@@ -6,12 +6,23 @@
     <title>Experience | Jayda Fountain</title>
     <link rel="stylesheet" href="../layout/styles.css">
 </head>
+
+<div id="glassModal" class="modal-overlay">
+    <div class="glass modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalBody">
+            </div>
+    </div>
+</div>
+
 <body class="animated-gradient-background">
 
     <div class="button-menu" style="margin-bottom: 2rem;">
-        <button type="button" class="menu" onclick="location.href='/index.html'">Home</button>
-        <button type="button" class="menu active" onclick="location.href='/pages/experience.html'">Experience</button>
+        <button type="button" class="menu" onclick="location.href='/layout/home.html'">Home</button>
+        <button type="button" class="menu" onclick="location.href='/pages/aboutMe.html'">About Me</button>
         <button type="button" class="menu" onclick="location.href='/pages/projects.html'">Projects</button>
+        <button type="button" class="menu" onclick="location.href='/pages/awards.html'">Awards</button>
+        <button type="button" class="menu" onclick="location.href='/pages/japan.html'">Japan</button>
     </div>
 
     <div class="container" style="display: block; max-width: 800px; margin: 0 auto; padding-top: 20px;">
@@ -19,87 +30,136 @@
         <h1 style="color: white; text-align: center; margin-bottom: 3rem;">My Journey</h1>
 
         <div class="timeline-container">
-            <div class="timeline-line"></div>
+            <svg class="timeline-svg-path" viewBox="0 0 400 2000" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="swirl-path" 
+                    d="M200,0 
+                        C450,150 -50,300 200,450 
+                        C450,600 -50,750 200,900
+                        C450,1050 -50,1200 200,1350
+                        C450,1500 -50,1650 200,1800
+                        C450,1950 -50,2100 200,2250" 
+                    stroke="pink" 
+                    stroke-width="3" 
+                    stroke-dasharray="10,10" 
+                    opacity="0.5" />
 
-            <div class="timeline-item left">
-                <div class="glass experience-card">
-                    <div class="card-header">
-                        <div class="icon glass">💼</div>
-                        <div>
-                            <h3 class="card-title">Curtis Senior High School</h3>
-                            <p class="card-subtitle">University Place, WA • September 2022 - June 2025</p>
+                <text x="200" y="20" text-anchor="middle" font-size="30" class="start-pin">
+                    📍
+                </text>
+                
+                <text font-size="25">
+                    <textPath href="#swirl-path" startOffset="0%">
+                        ✈
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="20s" repeatCount="indefinite" />
+                    </textPath>
+                </text>
+            </svg>
+
+            <div class="timeline-row">
+                <div class="timeline-item left">
+                    <div class="glass experience-card" onclick="openModal('More details about my time at Curtis High!')">
+                        <div class="card-header">
+                            <div class="icon glass">💼</div>
+                            <div>
+                                <h3 class="card-title">Curtis Senior High School</h3>
+                                <p class="card-subtitle">University Place, WA • September 2022 - June 2025</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>• Extra Curricular Activities: Kakehashi Project, Japanese Speech Contest.</p>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <p>• Extra Curricular Activities: Kakehashi Project, Japanese Speech Contest.</p>
+                </div>
+
+                <div class="timeline-item right">
+                    <img src="https://images.unsplash.com/photo-1561571994-3c61c554181a?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Curtis Senior High School" class="glass experience-card experience-img">
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-item left">
+                    <img src="https://images.unsplash.com/photo-1561571994-3c61c554181a?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Curtis Senior High School" class="glass experience-card experience-img">
+                </div>
+                <div class="timeline-item right">
+                    <div class="glass experience-card">
+                        <div class="card-header">
+                            <div class="icon glass">🏠</div>
+                            <div>
+                                <h3 class="card-title">Tacoma Community College</h3>
+                                <p class="card-subtitle">Tacoma, WA • September 2023 - June 2025</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 style="color: white; margin-bottom: 0.5rem;">Associate of Arts via Dual Enrollment</h3>
+                            <p>• Extra Curricular Activities: Computer Science Club, Running Start.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-item right">
-                <div class="glass experience-card">
-                    <div class="card-header">
-                        <div class="icon glass">🏠</div>
-                        <div>
-                            <h3 class="card-title">Tacoma Community College</h3>
-                            <p class="card-subtitle">Tacoma, WA • September 2023 - June 2025</p>
+            <div class="timeline-row">
+                <div class="timeline-item left">
+                    <div class="glass experience-card">
+                        <div class="card-header">
+                            <div class="icon glass">💼</div>
+                            <div>
+                                <h3 class="card-title">Girls Who Code 6-Week Summer Program</h3>
+                                <p class="card-subtitle">Virtual • June 2024 - August 2024</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>• Completed a rigorous virtual program with videos, articles, and projects focused in teaching data science and AI, Cybersecurity, and Web Development.</p>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <h3 style="color: white; margin-bottom: 0.5rem;">Associate of Arts via Dual Enrollment</h3>
-                        <p>• Extra Curricular Activities: Computer Science Club, Running Start.</p>
+                </div>
+                <div class="timeline-item right">
+                    <img src="https://images.unsplash.com/photo-1561571994-3c61c554181a?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Curtis Senior High School" class="glass experience-card experience-img">
+                </div>
+            </div>
+
+
+            <div class="timeline-row">
+                <div class="timeline-item right">
+                    <img src="https://images.unsplash.com/photo-1561571994-3c61c554181a?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Curtis Senior High School" class="glass experience-card experience-img">
+                </div>
+                <div class="timeline-item right">
+                    <div class="glass experience-card">
+                        <div class="card-header">
+                            <div class="icon glass">🏠</div>
+                            <div>
+                                <h3 class="card-title">Sprinkle My Locs Web Internship</h3>
+                                <p class="card-subtitle">Los Angeles, CA • July 2025 - August 2025</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>• Assisted in building the company website that sees 9,000 visitors a month. Utilized Shopify’s Liquid templating language, web elements, and code repository.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-item left">
-                <div class="glass experience-card">
-                    <div class="card-header">
-                        <div class="icon glass">💼</div>
-                        <div>
-                            <h3 class="card-title">Girls Who Code 6-Week Summer Program</h3>
-                            <p class="card-subtitle">Virtual • June 2024 - August 2024</p>
+            <div class="timeline-row">
+                <div class="timeline-item left">
+                    <div class="glass experience-card">
+                        <div class="card-header">
+                            <div class="icon glass">🇯🇵</div>
+                            <div>
+                                <h3 class="card-title">Study Abroad</h3>
+                                <p class="card-subtitle">Sophia University • Tokyo</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-content">
-                        <p>• Completed a rigorous virtual program with videos, articles, and projects focused in teaching data science and AI, Cybersecurity, and Web Development.</p>
+                        <div class="card-content">
+                            <p>• Immersed in Japanese culture while studying Global Studies and advanced technology.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="timeline-item right">
-                <div class="glass experience-card">
-                    <div class="card-header">
-                        <div class="icon glass">🏠</div>
-                        <div>
-                            <h3 class="card-title">Tacoma Community College</h3>
-                            <p class="card-subtitle">Tacoma, WA • September 2023 - June 2025</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3 style="color: white; margin-bottom: 0.5rem;">Associate of Arts via Dual Enrollment</h3>
-                        <p>• Extra Curricular Activities: Computer Science Club, Running Start.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item left">
-                <div class="glass experience-card">
-                    <div class="card-header">
-                        <div class="icon glass">🇯🇵</div>
-                        <div>
-                            <h3 class="card-title">Study Abroad</h3>
-                            <p class="card-subtitle">Sophia University • Tokyo</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <p>• Immersed in Japanese culture while studying Global Studies and advanced technology.</p>
-                    </div>
+                <div class="timeline-item right">
+                    <img src="https://images.unsplash.com/photo-1561571994-3c61c554181a?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Curtis Senior High School" class="glass experience-card experience-img">
                 </div>
             </div>
         </div>
 
     </div>
-
+    <script src="../layout/script.js"></script>
 </body>
 </html>

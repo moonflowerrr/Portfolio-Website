@@ -1,4 +1,21 @@
+const modal = document.getElementById("glassModal");
+const modalBody = document.getElementById("modalBody");
 
+function openModal(text) {
+    modalBody.innerHTML = `<p style="color: white;">${text}</p>`;
+    modal.style.display = "flex";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+// Close modal if user clicks anywhere outside the glass card
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
 
 document.addEventListener('mousemove', (e) => {
     const img = document.createElement('img');
